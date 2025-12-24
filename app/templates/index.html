@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome | PyLearn{% endblock %}
+
+{% block content %}
+<div class="landing-container">
+    
+    <div class="hero-section text-center">
+        <img src="{{ url_for('static', filename='images/gray_pylearn.PNG') }}" alt="PyLearn Logo" class="landing-logo mb-4">
+        <h1 class="display-4 fw-bold">Welcome to PyLearn</h1>
+        <p class="lead text-muted">Your journey to mastering Python starts here.</p>
+    </div>
+
+    <hr class="my-5" style="border-color: var(--border);">
+
+    <div class="row featurette align-items-center mb-5">
+        <div class="col-md-12">
+            <h2 class="feature-heading mb-3">Why Python? <span class="text-muted">It's powerful.</span></h2>
+            <p class="lead">
+                Python is an interpreted, high-level, general-purpose programming language. 
+                Its design philosophy emphasizes code readability with the use of significant indentation. 
+                Whether you want to work in Data Science, Web Development, or AI — Python is the best place to start.
+            </p>
+        </div>
+    </div>
+
+    <div class="row featurette align-items-center mb-5">
+        <div class="col-md-12 text-end">
+            <h2 class="feature-heading mb-3">About the Author <span class="text-muted">Mikhail Shupliakou</span></h2>
+            <p class="lead">
+                This platform was designed and developed by Mikhail Shupliakou as a dedicated learning environment. 
+                The goal is to provide a structured and interactive way to learn programming concepts from scratch.
+            </p>
+        </div>
+    </div>
+
+    <div class="text-center mt-5 mb-5">
+        <a href="{{ url_for('main.modules') }}" class="btn btn-lg btn-get-started">
+            GET STARTED
+        </a>
+    </div>
+
+</div>
+{% endblock %}
