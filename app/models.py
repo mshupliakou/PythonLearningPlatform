@@ -5,7 +5,7 @@ class User(db.Model):
     __tablename__ = 'users'
     __table_args__ = {'schema': 'pylearn'}
     id_user = db.Column(db.Integer, primary_key=True)
-    login = db.Column(db.String(50), index=True, unique=True)
+    username = db.Column('login', db.String(50), index=True, unique=True)
     email = db.Column(db.String(50), index=True, unique=True)
     password_hash = db.Column(db.Text)
     role=db.Column(db.String(50), index=True, default='user')
