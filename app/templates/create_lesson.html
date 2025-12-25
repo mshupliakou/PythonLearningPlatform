@@ -7,19 +7,19 @@
 
 <script>
   tinymce.init({
-    selector: '#editor', // ID нашего текстового поля
+    selector: '#editor',
     height: 500,
     menubar: false,
     plugins: [
       'advlist autolink lists link image charmap print preview anchor',
       'searchreplace visualblocks code fullscreen',
       'insertdatetime media table paste code help wordcount',
-      'codesample' // <-- ВАЖНО: Плагин для вставки кода
+      'codesample'
     ],
     toolbar: 'undo redo | formatselect | ' +
     'bold italic backcolor | alignleft aligncenter ' +
     'alignright alignjustify | bullist numlist outdent indent | ' +
-    'removeformat | image codesample | help', // codesample добавляет кнопку {;}
+    'removeformat | image codesample | help',
     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
   });
 </script>
@@ -43,7 +43,7 @@
         </form>
         
         <div class="text-center mt-3">
-             <a href="{{ url_for('main.module_details', module_id=module_id) }}" style="color: var(--text-muted);">Cancel</a>
+             <a href="{{ url_for('main.lessons_list', module_id=module_id) }}" style="color: var(--text-muted);">Cancel</a>
         </div>
     </div>
 </div>
