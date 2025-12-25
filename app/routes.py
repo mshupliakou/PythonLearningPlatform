@@ -140,3 +140,17 @@ def edit_module(module_id):
 def lessons_list(module_id):
     module = Module.query.get_or_404(module_id)
     return render_template('lessons_list.html', module=module)
+
+@main.route('/create_lesson', methods=['POST'])
+@login_required
+def create_lesson():
+    if current_user.role != 'admin':
+        return redirect(url_for('main.lessons_list'))
+
+    topic = request.form.get('topic')
+    description = request.form.get('description')
+    content = request.form.get('content')
+
+    db.session.commit()
+
+    return redirect(url_for('main.lessons_list'))

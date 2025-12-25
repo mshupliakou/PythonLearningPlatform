@@ -5,55 +5,65 @@
 {% block content %}
 
 <style>
+    .page-wrapper {
+        display: block !important;
+        padding: 0 !important;
+        justify-content: flex-start !important;
+    }
+
     .module-header {
         position: relative;
-        height: 400px;
         width: 100%;
+        height: 400px;
         background-image: url("{{ url_for('static', filename='images/modules/' + (module.image_path if module.image_path else 'default_course.jpg')) }}");
         background-size: cover;
         background-position: center;
-        border-bottom: 2px solid var(--accent);
+        border-bottom: 4px solid var(--accent);
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        margin-bottom: 40px;
+        margin-bottom: 50px;
     }
 
     .module-header::before {
         content: "";
         position: absolute;
         top: 0; left: 0; right: 0; bottom: 0;
-        background: linear-gradient(to bottom, rgba(15, 17, 21, 0.7), rgba(15, 17, 21, 1));
+        background: linear-gradient(to bottom, rgba(15, 17, 21, 0.6), rgba(15, 17, 21, 1));
         z-index: 1;
     }
 
     .header-content {
         position: relative;
         z-index: 2;
-        max-width: 800px;
+        max-width: 900px;
         padding: 20px;
     }
 
     .module-title {
-        font-size: 3.5rem;
+        font-size: 4rem;
         font-weight: 800;
         text-transform: uppercase;
         letter-spacing: 4px;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         color: #fff;
-        text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        text-shadow: 0 4px 15px rgba(0,0,0,0.8);
     }
 
     .module-desc {
-        font-size: 1.2rem;
-        color: #d1d1d1;
+        font-size: 1.3rem;
+        color: #e0e0e0;
         line-height: 1.6;
+        max-width: 700px;
+        margin: 0 auto;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     }
 
-    .lesson-list {
-        max-width: 800px;
-        margin: 0 auto 60px auto;
+    .lesson-container {
+        max-width: 800px; 
+        margin: 0 auto;
+        padding: 0 20px;
     }
 
     .lesson-btn {
@@ -61,39 +71,43 @@
         width: 100%;
         background-color: var(--bg-card);
         border: 1px solid var(--border);
-        border-left: 4px solid var(--accent);
-        padding: 20px 30px;
-        margin-bottom: 15px;
+        border-left: 5px solid var(--accent);
+        padding: 25px 30px;
+        margin-bottom: 20px;
         text-decoration: none;
         color: var(--text-main);
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         font-weight: bold;
         border-radius: 8px;
         transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
+        display: flex;
+        align-items: center;
     }
 
     .lesson-btn:hover {
-        background-color: #1f242e;
+        background-color: #232833;
         transform: translateX(10px);
-        box-shadow: -5px 5px 15px rgba(0,0,0,0.5);
+        box-shadow: -5px 5px 20px rgba(0,0,0,0.4);
         color: #fff;
-        border-left-width: 8px;
+        border-left-width: 10px;
     }
 
     .lesson-number {
         color: var(--accent);
-        margin-right: 15px;
+        margin-right: 20px;
         font-family: 'Courier New', monospace;
+        font-size: 1.5rem;
     }
 
     .empty-state {
         text-align: center;
         color: var(--text-muted);
-        padding: 40px;
+        padding: 50px;
         border: 2px dashed var(--border);
         border-radius: 12px;
+        background-color: rgba(255,255,255,0.02);
     }
 </style>
 
@@ -104,29 +118,33 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="lesson-list">
-        <h3 class="mb-4" style="color: var(--accent); letter-spacing: 2px; text-align: center;">LESSONS</h3>
+<div class="lesson-container">
+    <h3 class="mb-5 text-center" style="color: var(--accent); letter-spacing: 3px; font-weight: bold;">
+        COURSE CONTENT
+    </h3>
 
-        {% if module.lessons %}
-            {% for lesson in module.lessons %}
-            <a href="#" class="lesson-btn">
-                <span class="lesson-number">#{{ loop.index }}</span>
-                {{ lesson.name }}
-            </a>
-            {% endfor %}
-        {% else %}
-            <div class="empty-state">
-                <h4>No lessons yet.</h4>
-                <p>Check back later, content is coming soon!</p>
-            </div>
-        {% endif %}
-
-        <div class="text-center mt-5">
-            <a href="{{ url_for('main.modules') }}" style="color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--text-muted);">
-                &larr; Back to Modules
-            </a>
+    {% if module.lessons %}
+        {% for lesson in module.lessons %}
+        <a href="#" class="lesson-btn">
+            <span class="lesson-number">#{{ loop.index }}</span>
+            <span style="flex-grow: 1;">{{ lesson.name }}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16" style="opacity: 0.5;">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+              <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445"/>
+            </svg>
+        </a>
+        {% endfor %}
+    {% else %}
+        <div class="empty-state">
+            <h4>No lessons yet.</h4>
+            <p>The author hasn't added any content to this module yet.</p>
         </div>
+    {% endif %}
+
+    <div class="text-center mt-5 mb-5">
+        <a href="{{ url_for('main.modules') }}" style="color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--text-muted); padding-bottom: 2px;">
+            &larr; Back to Modules
+        </a>
     </div>
 </div>
 

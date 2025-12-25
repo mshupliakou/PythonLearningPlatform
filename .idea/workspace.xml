@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e32ebeef-628b-4a76-8b71-da48666ab239" name="Changes" comment="edit button">
+    <list default="true" id="e32ebeef-628b-4a76-8b71-da48666ab239" name="Changes" comment="functions.png is added">
       <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/lessons_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/modules.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/modules.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/lessons_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/lessons_list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,63 +132,7 @@
       <option name="presentableId" value="Default" />
       <updated>1766596079945</updated>
       <workItem from="1766596081162" duration="17295000" />
-      <workItem from="1766656104272" duration="21837000" />
-    </task>
-    <task id="LOCAL-00015" summary="update">
-      <option name="closed" value="true" />
-      <created>1766612299454</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1766612299454</updated>
-    </task>
-    <task id="LOCAL-00016" summary="update">
-      <option name="closed" value="true" />
-      <created>1766613546573</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1766613546574</updated>
-    </task>
-    <task id="LOCAL-00017" summary="update">
-      <option name="closed" value="true" />
-      <created>1766613555040</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1766613555040</updated>
-    </task>
-    <task id="LOCAL-00018" summary="form was changed">
-      <option name="closed" value="true" />
-      <created>1766613570205</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1766613570205</updated>
-    </task>
-    <task id="LOCAL-00019" summary="update">
-      <option name="closed" value="true" />
-      <created>1766613577326</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1766613577326</updated>
-    </task>
-    <task id="LOCAL-00020" summary="register method">
-      <option name="closed" value="true" />
-      <created>1766613590378</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1766613590378</updated>
-    </task>
-    <task id="LOCAL-00021" summary="register html was created">
-      <option name="closed" value="true" />
-      <created>1766613602379</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1766613602379</updated>
+      <workItem from="1766656104272" duration="23429000" />
     </task>
     <task id="LOCAL-00022" summary="it's computable with database now">
       <option name="closed" value="true" />
@@ -530,7 +470,63 @@
       <option name="project" value="LOCAL" />
       <updated>1766682395082</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="new html was created">
+      <option name="closed" value="true" />
+      <created>1766687776420</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1766687776420</updated>
+    </task>
+    <task id="LOCAL-00065" summary="error message was added">
+      <option name="closed" value="true" />
+      <created>1766687801395</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1766687801395</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Lesson model was created">
+      <option name="closed" value="true" />
+      <created>1766687847048</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1766687847048</updated>
+    </task>
+    <task id="LOCAL-00067" summary="update">
+      <option name="closed" value="true" />
+      <created>1766687907317</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1766687907317</updated>
+    </task>
+    <task id="LOCAL-00068" summary="lessons are shown">
+      <option name="closed" value="true" />
+      <created>1766687930829</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1766687930829</updated>
+    </task>
+    <task id="LOCAL-00069" summary="update">
+      <option name="closed" value="true" />
+      <created>1766687942100</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1766687942100</updated>
+    </task>
+    <task id="LOCAL-00070" summary="functions.png is added">
+      <option name="closed" value="true" />
+      <created>1766687980051</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1766687980051</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -548,11 +544,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="schema" />
-    <MESSAGE value="form was changed" />
-    <MESSAGE value="added image" />
-    <MESSAGE value="index was created" />
-    <MESSAGE value="littke update" />
     <MESSAGE value="return index" />
     <MESSAGE value="buttons instead of links" />
     <MESSAGE value="login import" />
@@ -570,12 +561,17 @@
     <MESSAGE value="delete module function" />
     <MESSAGE value="misc.xml" />
     <MESSAGE value="was deleted" />
-    <MESSAGE value="update" />
     <MESSAGE value="edit function" />
     <MESSAGE value="edit button" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit button" />
+    <MESSAGE value="new html was created" />
+    <MESSAGE value="error message was added" />
+    <MESSAGE value="Lesson model was created" />
+    <MESSAGE value="lessons are shown" />
+    <MESSAGE value="update" />
+    <MESSAGE value="functions.png is added" />
+    <option name="LAST_COMMIT_MESSAGE" value="functions.png is added" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PythonLearningPlatform$PythonLearningPlatform.coverage" NAME="PythonLearningPlatform Coverage Results" MODIFIED="1766687547398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PythonLearningPlatform$PythonLearningPlatform.coverage" NAME="PythonLearningPlatform Coverage Results" MODIFIED="1766688153128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
