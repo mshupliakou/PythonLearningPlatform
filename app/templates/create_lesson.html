@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Create Lesson | PyLearn{% endblock %}
+
+{% block content %}
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+  tinymce.init({
+    selector: '#editor', // ID нашего текстового поля
+    height: 500,
+    menubar: false,
+    plugins: [
+      'advlist autolink lists link image charmap print preview anchor',
+      'searchreplace visualblocks code fullscreen',
+      'insertdatetime media table paste code help wordcount',
+      'codesample' // <-- ВАЖНО: Плагин для вставки кода
+    ],
+    toolbar: 'undo redo | formatselect | ' +
+    'bold italic backcolor | alignleft aligncenter ' +
+    'alignright alignjustify | bullist numlist outdent indent | ' +
+    'removeformat | image codesample | help', // codesample добавляет кнопку {;}
+    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+  });
+</script>
+
+<div class="container mt-5">
+    <div class="login-container" style="max-width: 900px; margin: 0 auto;">
+        <h1 class="text-center">NEW LESSON</h1>
+        
+        <form method="post">
+            <div class="input-group">
+                <label>LESSON NAME</label>
+                <input type="text" name="name" required placeholder="Variables and Types" style="background: #2b2b2b; color: white;">
+            </div>
+
+            <div class="input-group">
+                <label>CONTENT</label>
+                <textarea id="editor" name="content"></textarea>
+            </div>
+
+            <button type="submit" class="mt-4">SAVE LESSON</button>
+        </form>
+        
+        <div class="text-center mt-3">
+             <a href="{{ url_for('main.module_details', module_id=module_id) }}" style="color: var(--text-muted);">Cancel</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
