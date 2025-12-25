@@ -22,7 +22,7 @@ def login():
         return redirect(url_for('main.modules'))
 
     if request.method == 'POST':
-        username = request.form.get('username')
+        username = request.form.get('login')
         password = request.form.get('password')
 
         user = User.query.filter_by(username=username).first()
@@ -41,8 +41,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('main.index'))
-
+    return redirect(url_for('main.base'))
 
 
 @main.route('/register', methods=['GET', 'POST'])
@@ -63,3 +62,24 @@ def register():
         return redirect(url_for('main.login'))
 
     return render_template('register.html')
+
+@main.route('/create_module', methods=['POST'])
+@login_required
+def create_module():
+    if current_user.role != 'admin':
+        return redirect(url_for('main.modules'))
+
+    if request.method == 'POST':
+        name = request.form.get('name')
+        description = request.form.get('description')
+        image_path = request.form.get('image_path')
+
+        if not image_path:
+            image_path = 'default_course.jpg'
+
+        new_module = Module(name=name, description=description, image_path=image_path)
+        db.session.add(new_module)
+        db.session.commit()
+
+        return redirect(url_for('main.modules'))
+
