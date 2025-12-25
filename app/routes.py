@@ -1,10 +1,10 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
 from . import db
 from flask_login import login_user, logout_user, login_required, current_user
 from .models import  User
 from .models import Module
 from .models import Lesson
 import os
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
 
 main = Blueprint('main', __name__)
@@ -145,6 +145,7 @@ def lessons_list(module_id):
 @main.route('/create_lesson/<int:module_id>', methods=['GET', 'POST'])
 @login_required
 def create_lesson(module_id):
+    tinymce_key = os.environ.get('TINYMCE_KEY')
     if current_user.role != 'admin':
         return redirect(url_for('main.modules'))
     if request.method == 'POST':
@@ -154,4 +155,4 @@ def create_lesson(module_id):
         db.session.add(new_lesson)
         db.session.commit()
         return redirect(url_for('main.lessons_list', module_id=module_id))
-    return render_template('create_lesson.html', module_id=module_id)
+    return render_template('create_lesson.html', module_id=module_id, api_key=tinymce_key)
