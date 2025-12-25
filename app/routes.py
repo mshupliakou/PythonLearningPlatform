@@ -1,8 +1,10 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from . import db
 from flask_login import login_user, logout_user, login_required, current_user
-from .models import Module, User
+from .models import  User
 from .models import Module
+import os
+from werkzeug.utils import secure_filename
 
 main = Blueprint('main', __name__)
 
@@ -72,10 +74,13 @@ def create_module():
     if request.method == 'POST':
         name = request.form.get('name')
         description = request.form.get('description')
-        image_path = request.form.get('image_path')
-
-        if not image_path:
-            image_path = 'default_course.jpg'
+        file = request.files.get('image')
+        image_path = 'default_course.jpg'
+        if file and file.filename:
+            filename = secure_filename(file.filename)
+            save_path = os.path.join('app', 'static', 'images', 'modules', filename)
+            file.save(save_path)
+            image_filename = filename
 
         new_module = Module(name=name, description=description, image_path=image_path)
         db.session.add(new_module)
