@@ -44,3 +44,22 @@ class Module(db.Model):
 
     def get_id(self):
         return str(self.id_module)
+
+class Lesson(db.Model):
+    __tablename__ = 'lessons'
+    __table_args__ = {'schema': 'pylearn'}
+    id_lesson = db.Column(db.Integer, primary_key=True)
+
+    topic = db.Column(db.String(50))
+
+    description = db.Column(db.Text)
+
+    content = db.Column(db.Text)
+
+    id_module = db.Column(db.Integer)
+
+    def __repr__(self):
+        return f'<Lesson {self.title}>'
+
+    def get_id(self):
+        return str(self.id_lesson)
