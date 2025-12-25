@@ -11,8 +11,8 @@
 
     <div class="row">
         {% for course in courses %}
-<div class="col-md-6 col-lg-3 mb-4">
-  <div class="card h-100 module-card">
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card h-100 module-card">
 
                 {% if current_user.is_authenticated and current_user.role == 'admin' %}
 
@@ -32,41 +32,8 @@
                     </button>
                 </form>
 
-                <div class="modal fade" id="editModal{{ course.id_module }}" tabindex="-1" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content login-container" style="max-width: 500px; padding: 20px; text-align: left;">
-
-                      <div class="modal-header border-0 pb-0">
-                        <h1 class="modal-title w-100 text-center" style="margin: 0; font-size: 24px;">EDIT MODULE</h1>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; right: 20px; top: 20px;"></button>
-                      </div>
-
-                      <div class="modal-body pt-4">
-                        <form action="{{ url_for('main.edit_module', module_id=course.id_module) }}" method="post" enctype="multipart/form-data">
-
-                            <div class="input-group">
-                              <label>MODULE NAME</label>
-                              <input type="text" name="name" required value="{{ course.name }}" style="background: #2b2b2b; color: white;">
-                            </div>
-
-                            <div class="input-group">
-                              <label>DESCRIPTION</label>
-                              <textarea name="description" rows="5" required style="width: 100%; background: #2b2b2b; border: 1px solid var(--border); color: white; padding: 10px;">{{ course.description }}</textarea>
-                            </div>
-
-                            <div class="input-group">
-                              <label>CHANGE IMAGE (Optional)</label>
-                              <input type="file" name="image" accept="image/*" style="color: white;">
-                            </div>
-
-                            <button type="submit" class="mt-4">SAVE CHANGES</button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
                 {% endif %}
+
                 <img src="{{ url_for('static', filename='images/modules/' + (course.image_path if course.image_path else 'default_course.jpg')) }}"
                      class="card-img-top"
                      alt="{{ course.name }}"
@@ -79,17 +46,56 @@
                     <p class="card-text flex-grow-1" style="color: var(--text-muted); font-size: 14px;">
                         {{ course.description[:100] }}...
                     </p>
-                    <a href="#" class="btn btn-outline-danger mt-3" style="border-radius: 20px;">
-                        Start Learning
-                    </a>
+                        <a href="{{ url_for('main.lessons_list', module_id=course.id_module) }}"
+                           class="btn btn-outline-danger mt-3"
+                           style="border-radius: 20px;">
+                            Start Learning
+                        </a>
                 </div>
             </div>
+            {% if current_user.is_authenticated and current_user.role == 'admin' %}
+            <div class="modal fade" id="editModal{{ course.id_module }}" tabindex="-1" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content login-container" style="max-width: 500px; padding: 20px; text-align: left;">
+
+                  <div class="modal-header border-0 pb-0">
+                    <h1 class="modal-title w-100 text-center" style="margin: 0; font-size: 24px;">EDIT MODULE</h1>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; right: 20px; top: 20px;"></button>
+                  </div>
+
+                  <div class="modal-body pt-4">
+                    <form action="{{ url_for('main.edit_module', module_id=course.id_module) }}" method="post" enctype="multipart/form-data">
+
+                        <div class="input-group">
+                          <label>MODULE NAME</label>
+                          <input type="text" name="name" required value="{{ course.name }}" style="background: #2b2b2b; color: white;">
+                        </div>
+
+                        <div class="input-group">
+                          <label>DESCRIPTION</label>
+                          <textarea name="description" rows="5" required style="width: 100%; background: #2b2b2b; border: 1px solid var(--border); color: white; padding: 10px;">{{ course.description }}</textarea>
+                        </div>
+
+                        <div class="input-group">
+                          <label>CHANGE IMAGE (Optional)</label>
+                          <input type="file" name="image" accept="image/*">
+                        </div>
+
+                        <button type="submit" class="mt-4">SAVE CHANGES</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
         </div>
         {% else %}
         <div class="col-12 text-center">
             <p class="text-muted">No modules found. Please check back later!</p>
         </div>
         {% endfor %}
+
         {% if current_user.is_authenticated and current_user.role == 'admin' %}
             <div class="col-md-6 col-lg-3 mb-4">
                 <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#createModuleModal">
@@ -104,47 +110,46 @@
                     </div>
                 </a>
             </div>
-            {% endif %}
+        {% endif %}
     </div>
 
-<div class="modal fade" id="createModuleModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal fade" id="createModuleModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
 
-    <div class="modal-content login-container" style="max-width: 500px; padding: 20px;">
+        <div class="modal-content login-container" style="max-width: 500px; padding: 20px;">
 
-      <div class="modal-header border-0 pb-0">
-        <h1 class="modal-title w-100 text-center" style="margin: 0;">NEW MODULE</h1>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; right: 20px; top: 20px;"></button>
+          <div class="modal-header border-0 pb-0">
+            <h1 class="modal-title w-100 text-center" style="margin: 0;">NEW MODULE</h1>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; right: 20px; top: 20px;"></button>
+          </div>
+
+          <div class="modal-body pt-4">
+            <form action="{{ url_for('main.create_module') }}" method="post" enctype="multipart/form-data">
+
+                <div class="input-group">
+                  <label for="name">MODULE NAME</label>
+                  <input type="text" id="name" name="name" required placeholder="Advanced Python">
+                </div>
+
+                <div class="input-group">
+                  <label for="description">DESCRIPTION</label>
+                  <textarea id="description" name="description" rows="5" required
+                            style="width: 100%; background-color: #0f1115; border: 1px solid var(--border); color: var(--text-main); padding: 12px; font-size: 16px;"></textarea>
+                </div>
+
+                <div class="input-group">
+                  <label for="image">COVER IMAGE</label>
+                   <input type="file" id="image" name="image" accept="image/*">
+                </div>
+
+                <button type="submit" class="mt-4">CREATE MODULE</button>
+
+            </form>
+          </div>
+
+        </div>
       </div>
-
-      <div class="modal-body pt-4">
-        <form action="{{ url_for('main.create_module') }}" method="post" enctype="multipart/form-data">
-
-            <div class="input-group">
-              <label for="name">MODULE NAME</label>
-              <input type="text" id="name" name="name" required placeholder="Advanced Python">
-            </div>
-
-            <div class="input-group">
-              <label for="description">DESCRIPTION</label>
-              <textarea id="description" name="description" rows="5" required
-                        style="width: 100%; background-color: #0f1115; border: 1px solid var(--border); color: var(--text-main); padding: 12px; font-size: 16px;"></textarea>
-            </div>
-
-            <div class="input-group">
-              <label for="image">COVER IMAGE</label>
-              <input type="file" id="image" name="image" accept="image/*"
-                     style="padding: 8px; cursor: pointer;">
-            </div>
-
-            <button type="submit" class="mt-4">CREATE MODULE</button>
-
-        </form>
-      </div>
-
     </div>
-  </div>
-</div>
-</div>
 
+</div>
 {% endblock %}
