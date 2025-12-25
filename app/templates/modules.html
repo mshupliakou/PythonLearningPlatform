@@ -11,10 +11,62 @@
 
     <div class="row">
         {% for course in courses %}
-        <div class="col-md-6 col-lg-3 mb-4">
+<div class="col-md-6 col-lg-3 mb-4">
+  <div class="card h-100 module-card">
 
-            <div class="card h-100 module-card">
+                {% if current_user.is_authenticated and current_user.role == 'admin' %}
 
+                <button type="button" class="edit-btn" title="Edit Module"
+                        data-bs-toggle="modal" data-bs-target="#editModal{{ course.id_module }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                      <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                    </svg>
+                </button>
+
+                <form action="{{ url_for('main.delete_module', module_id=course.id_module) }}" method="post"
+                      onsubmit="return confirm('Are you sure?');">
+                    <button type="submit" class="delete-btn" title="Delete Module">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                          <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                        </svg>
+                    </button>
+                </form>
+
+                <div class="modal fade" id="editModal{{ course.id_module }}" tabindex="-1" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content login-container" style="max-width: 500px; padding: 20px; text-align: left;">
+
+                      <div class="modal-header border-0 pb-0">
+                        <h1 class="modal-title w-100 text-center" style="margin: 0; font-size: 24px;">EDIT MODULE</h1>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; right: 20px; top: 20px;"></button>
+                      </div>
+
+                      <div class="modal-body pt-4">
+                        <form action="{{ url_for('main.edit_module', module_id=course.id_module) }}" method="post" enctype="multipart/form-data">
+
+                            <div class="input-group">
+                              <label>MODULE NAME</label>
+                              <input type="text" name="name" required value="{{ course.name }}" style="background: #2b2b2b; color: white;">
+                            </div>
+
+                            <div class="input-group">
+                              <label>DESCRIPTION</label>
+                              <textarea name="description" rows="5" required style="width: 100%; background: #2b2b2b; border: 1px solid var(--border); color: white; padding: 10px;">{{ course.description }}</textarea>
+                            </div>
+
+                            <div class="input-group">
+                              <label>CHANGE IMAGE (Optional)</label>
+                              <input type="file" name="image" accept="image/*" style="color: white;">
+                            </div>
+
+                            <button type="submit" class="mt-4">SAVE CHANGES</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% endif %}
                 <img src="{{ url_for('static', filename='images/modules/' + (course.image_path if course.image_path else 'default_course.jpg')) }}"
                      class="card-img-top"
                      alt="{{ course.name }}"
@@ -24,16 +76,14 @@
                     <h5 class="card-title" style="color: var(--text-main); font-weight: bold;">
                         {{ course.name }}
                     </h5>
-
                     <p class="card-text flex-grow-1" style="color: var(--text-muted); font-size: 14px;">
-                        {{ course.description[:100] }}... </p>
-
+                        {{ course.description[:100] }}...
+                    </p>
                     <a href="#" class="btn btn-outline-danger mt-3" style="border-radius: 20px;">
                         Start Learning
                     </a>
                 </div>
             </div>
-
         </div>
         {% else %}
         <div class="col-12 text-center">
