@@ -268,3 +268,24 @@ footer h4:hover {
     box-shadow: 0 6px 15px rgba(255, 94, 91, 0.6);
     color: #000 !important;
 }
+
+/*MODULES*/
+
+.module-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.module-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border-color: var(--accent);
+}
+
+.module-card .card-title {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
