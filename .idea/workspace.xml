@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e32ebeef-628b-4a76-8b71-da48666ab239" name="Changes" comment="buttons instead of links">
+    <list default="true" id="e32ebeef-628b-4a76-8b71-da48666ab239" name="Changes" comment="update">
       <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/images/modules/basics.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/images/modules/introduction.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/modules.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/modules.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/modules.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +130,7 @@
       <option name="presentableId" value="Default" />
       <updated>1766596079945</updated>
       <workItem from="1766596081162" duration="17295000" />
-      <workItem from="1766656104272" duration="5226000" />
+      <workItem from="1766656104272" duration="8771000" />
     </task>
     <task id="LOCAL-00001" summary="new rotes">
       <option name="closed" value="true" />
@@ -425,7 +420,63 @@
       <option name="project" value="LOCAL" />
       <updated>1766617208240</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="login import">
+      <option name="closed" value="true" />
+      <created>1766661928706</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1766661928706</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Sign up Log out button">
+      <option name="closed" value="true" />
+      <created>1766661949573</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1766661949573</updated>
+    </task>
+    <task id="LOCAL-00039" summary="photo was added">
+      <option name="closed" value="true" />
+      <created>1766661962181</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1766661962181</updated>
+    </task>
+    <task id="LOCAL-00040" summary="login manager was added">
+      <option name="closed" value="true" />
+      <created>1766661981844</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1766661981844</updated>
+    </task>
+    <task id="LOCAL-00041" summary="html was created">
+      <option name="closed" value="true" />
+      <created>1766662001702</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1766662001702</updated>
+    </task>
+    <task id="LOCAL-00042" summary="login function is implemented">
+      <option name="closed" value="true" />
+      <created>1766662045373</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1766662045373</updated>
+    </task>
+    <task id="LOCAL-00043" summary="update">
+      <option name="closed" value="true" />
+      <created>1766662053693</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1766662053693</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -443,9 +494,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="new rotes" />
-    <MESSAGE value="html was created" />
-    <MESSAGE value="logo was added" />
     <MESSAGE value="css was created" />
     <MESSAGE value="gitignore" />
     <MESSAGE value="init was created" />
@@ -463,11 +511,17 @@
     <MESSAGE value="index was created" />
     <MESSAGE value="littke update" />
     <MESSAGE value="return index" />
-    <MESSAGE value="update" />
     <MESSAGE value="buttons instead of links" />
-    <option name="LAST_COMMIT_MESSAGE" value="buttons instead of links" />
+    <MESSAGE value="login import" />
+    <MESSAGE value="Sign up Log out button" />
+    <MESSAGE value="photo was added" />
+    <MESSAGE value="login manager was added" />
+    <MESSAGE value="html was created" />
+    <MESSAGE value="login function is implemented" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PythonLearningPlatform$PythonLearningPlatform.coverage" NAME="PythonLearningPlatform Coverage Results" MODIFIED="1766661540115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PythonLearningPlatform$PythonLearningPlatform.coverage" NAME="PythonLearningPlatform Coverage Results" MODIFIED="1766667450415" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
