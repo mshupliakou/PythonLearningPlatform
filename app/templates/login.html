@@ -3,29 +3,38 @@
 {% block title %}Login | PyLearn{% endblock %}
 
 {% block content %}
-<div class="login-container">
+<div class="page-wrapper">
+    <div class="login-container">
+        <h1>SIGN IN</h1>
 
-  <h1>LOGIN</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="error-message">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form method="post" action="/login">
+            <div class="input-group">
+                <label for="login">USERNAME</label>
+                <input type="text" id="login" name="login" required placeholder="Enter your username">
+            </div>
 
-  <form method="post">
-    <div class="input-group">
-      <label for="login">USERNAME</label>
-      <input type="login" id="login" name="login" required>
+            <div class="input-group">
+                <label for="password">PASSWORD</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+            </div>
+
+            <button type="submit">LOGIN</button>
+        </form>
+
+        <div class="divider">OR</div>
+
+        <a href="{{ url_for('main.register') }}">
+            <button class="register-btn">CREATE AN ACCOUNT</button>
+        </a>
     </div>
-
-    <div class="input-group">
-      <label for="password">PASSWORD</label>
-      <input type="password" id="password" name="password" required>
-    </div>
-
-    <button type="submit">SIGN IN</button>
-  </form>
-
-  <div class="divider">OR</div>
-
-  <div class="footer">
-    Don't have an account? <a href="/register">Sign up</a>
-  </div>
-
 </div>
 {% endblock %}
