@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}{{ module.name }} | PyLearn{% endblock %}
+
+{% block content %}
+
+<style>
+    .module-header {
+        position: relative;
+        height: 400px;
+        width: 100%;
+        background-image: url("{{ url_for('static', filename='images/modules/' + (module.image_path if module.image_path else 'default_course.jpg')) }}");
+        background-size: cover;
+        background-position: center;
+        border-bottom: 2px solid var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .module-header::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: linear-gradient(to bottom, rgba(15, 17, 21, 0.7), rgba(15, 17, 21, 1));
+        z-index: 1;
+    }
+
+    .header-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        padding: 20px;
+    }
+
+    .module-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        margin-bottom: 15px;
+        color: #fff;
+        text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+
+    .module-desc {
+        font-size: 1.2rem;
+        color: #d1d1d1;
+        line-height: 1.6;
+    }
+
+    .lesson-list {
+        max-width: 800px;
+        margin: 0 auto 60px auto;
+    }
+
+    .lesson-btn {
+        display: block;
+        width: 100%;
+        background-color: var(--bg-card);
+        border: 1px solid var(--border);
+        border-left: 4px solid var(--accent);
+        padding: 20px 30px;
+        margin-bottom: 15px;
+        text-decoration: none;
+        color: var(--text-main);
+        font-size: 1.2rem;
+        font-weight: bold;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .lesson-btn:hover {
+        background-color: #1f242e;
+        transform: translateX(10px);
+        box-shadow: -5px 5px 15px rgba(0,0,0,0.5);
+        color: #fff;
+        border-left-width: 8px;
+    }
+
+    .lesson-number {
+        color: var(--accent);
+        margin-right: 15px;
+        font-family: 'Courier New', monospace;
+    }
+
+    .empty-state {
+        text-align: center;
+        color: var(--text-muted);
+        padding: 40px;
+        border: 2px dashed var(--border);
+        border-radius: 12px;
+    }
+</style>
+
+<div class="module-header">
+    <div class="header-content">
+        <h1 class="module-title">{{ module.name }}</h1>
+        <p class="module-desc">{{ module.description }}</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="lesson-list">
+        <h3 class="mb-4" style="color: var(--accent); letter-spacing: 2px; text-align: center;">LESSONS</h3>
+
+        {% if module.lessons %}
+            {% for lesson in module.lessons %}
+            <a href="#" class="lesson-btn">
+                <span class="lesson-number">#{{ loop.index }}</span>
+                {{ lesson.name }}
+            </a>
+            {% endfor %}
+        {% else %}
+            <div class="empty-state">
+                <h4>No lessons yet.</h4>
+                <p>Check back later, content is coming soon!</p>
+            </div>
+        {% endif %}
+
+        <div class="text-center mt-5">
+            <a href="{{ url_for('main.modules') }}" style="color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--text-muted);">
+                &larr; Back to Modules
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
