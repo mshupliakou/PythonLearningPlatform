@@ -40,7 +40,65 @@
             <p class="text-muted">No modules found. Please check back later!</p>
         </div>
         {% endfor %}
+        {% if current_user.is_authenticated and current_user.role == 'admin' %}
+            <div class="col-md-6 col-lg-3 mb-4">
+                <a href="{{ url_for('main.create_module') }}" class="text-decoration-none">
+                    <div class="card h-100 module-card d-flex justify-content-center align-items-center"
+                         style="border: 2px dashed var(--accent); background: transparent; min-height: 350px;">
+
+                        <div class="text-center">
+                            <span style="font-size: 80px; color: var(--accent); line-height: 1;">+</span>
+                            <h4 class="mt-2" style="color: var(--text-main);">New Module</h4>
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+            {% endif %}
     </div>
 
 </div>
+    <div class="modal fade" id="createModuleModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="background-color: var(--bg-card); border: 1px solid var(--border); color: var(--text-main);">
+
+      <div class="modal-header" style="border-bottom: 1px solid var(--border);">
+        <h5 class="modal-title fw-bold">CREATE MODULE</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form action="{{ url_for('main.create_module') }}" method="post">
+
+            <div class="mb-3">
+              <label for="name" class="form-label text-muted" style="font-size: 0.8rem;">MODULE NAME</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Advanced Python" required
+                     style="background: #2b2b2b; border: 1px solid #444; color: white;">
+            </div>
+
+            <div class="mb-3">
+              <label for="description" class="form-label text-muted" style="font-size: 0.8rem;">DESCRIPTION</label>
+              <textarea class="form-control" id="description" name="description" rows="5" required
+                        style="background: #2b2b2b; border: 1px solid #444; color: white;"></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="image_path" class="form-label text-muted" style="font-size: 0.8rem;">IMAGE FILENAME</label>
+              <input type="text" class="form-control" id="image_path" name="image_path" placeholder="default_course.jpg"
+                     style="background: #2b2b2b; border: 1px solid #444; color: white;">
+            </div>
+
+            <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-danger btn-lg" style="background-color: var(--accent); border: none; font-weight: bold; color: black;">
+                    CREATE
+                </button>
+            </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 {% endblock %}
