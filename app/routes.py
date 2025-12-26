@@ -6,6 +6,7 @@ from .models import Lesson
 import os
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
+from .models import Quiz, Question, Answer
 
 main = Blueprint('main', __name__)
 
@@ -198,3 +199,63 @@ def view_lesson(id_lesson):
     id_module = lesson.id_module
     module = Module.query.get_or_404(id_module)
     return render_template('lesson.html', lesson=lesson, module=module)
+
+@main.route('/create_quiz/<int:id_lesson>', methods=['GET'])
+@login_required
+def create_quiz(id_lesson):
+    if current_user.role != 'admin':
+        return redirect(url_for('main.modules'))
+    lesson = Lesson.query.get_or_404(id_lesson)
+    existing_quiz = lesson.quiz
+    tinymce_key = os.environ.get('TINYMCE_KEY')
+    return render_template('create_quiz.html', lesson=lesson, quiz=existing_quiz, api_key=tinymce_key)
+
+
+@main.route('/save_quiz/<int:id_lesson>', methods=['POST'])
+@login_required
+def save_quiz(id_lesson):
+    if current_user.role != 'admin':
+        return "Access denied", 403
+
+    data = request.get_json()
+    lesson = Lesson.query.get_or_404(id_lesson)
+
+    if lesson.quiz:
+        db.session.delete(lesson.quiz)
+
+    new_quiz = Quiz(title=data.get('title'), id_lesson=id_lesson)
+    db.session.add(new_quiz)
+    db.session.flush()
+
+    for q_data in data.get('questions', []):
+        new_question = Question(
+            question=q_data['text'],
+            id_quiz=new_quiz.id_quiz
+        )
+        db.session.add(new_question)
+        db.session.flush()
+
+        for a_data in q_data.get('answers', []):
+            new_answer = Answer(
+                answer=a_data['text'],
+                is_right=a_data['is_correct'],
+                id_question=new_question.id_question
+            )
+            db.session.add(new_answer)
+
+    db.session.commit()
+    return {'status': 'success'}, 200
+
+
+@main.route('/delete_quiz/<int:id_quiz>', methods=['POST'])
+@login_required
+def delete_quiz(id_quiz):
+    if current_user.role != 'admin':
+        return redirect(url_for('main.modules'))
+
+    quiz = Quiz.query.get_or_404(id_quiz)
+    lesson_id = quiz.id_lesson
+    db.session.delete(quiz)
+    db.session.commit()
+
+    return redirect(url_for('main.view_lesson', id_lesson=lesson_id))
