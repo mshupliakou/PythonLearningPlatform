@@ -1,30 +1,73 @@
 {% extends "base.html" %}
 
-{% block title %}Create Quiz | PyLearn{% endblock %}
+{% block title %}Quiz Editor | PyLearn{% endblock %}
 
 {% block content %}
 <script src="https://cdn.tiny.cloud/1/{{ api_key }}/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
-<div class="container mt-5 mb-5">
-    <h1 style="color: var(--accent);">QUIZ EDITOR</h1>
+<style>
+    .editor-container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
 
-    <div class="mb-4">
-        <label>Quiz Title</label>
-        <input type="text" id="quizTitle" class="form-control" style="background: #222; color: white; border: 1px solid #444;" placeholder="Ex: Python Basics Quiz">
+    .input-dark {
+        background-color: #1a1d24 !important;
+        border: 1px solid var(--border) !important;
+        color: var(--text-main) !important;
+        padding: 12px;
+    }
+
+    .input-dark:focus {
+        border-color: var(--accent) !important;
+        box-shadow: 0 0 0 2px rgba(255, 94, 91, 0.2);
+    }
+
+    .answer-group {
+        background-color: #0f1115;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #333;
+    }
+
+    .form-check-input:checked {
+        background-color: var(--accent);
+        border-color: var(--accent);
+    }
+</style>
+
+<div class="container mt-5 mb-5 editor-container">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 style="font-weight: bold; color: var(--text-main);">
+            <span style="color: var(--accent);">QUIZ</span> EDITOR
+        </h1>
+        <a href="{{ url_for('main.view_lesson', id_lesson=lesson.id_lesson) }}" class="btn btn-outline-secondary">Cancel</a>
     </div>
 
-    <div id="questionsContainer"></div>
+    <div class="mb-5">
+        <label class="text-muted fw-bold small mb-2">QUIZ TITLE</label>
+        <input type="text" id="quizTitle" class="form-control input-dark form-control-lg"
+               placeholder="Ex: Variables Quiz" value="{{ quiz.title if quiz else '' }}">
+    </div>
 
-    <button onclick="addQuestion()" class="btn btn-outline-light mt-3 mb-5">+ Add New Question</button>
-    
+    <div id="questionsContainer">
+        </div>
+
+    <button onclick="addQuestion()" class="btn btn-outline-light w-100 py-3 mb-5" style="border-style: dashed;">
+        + ADD NEW QUESTION
+    </button>
+
     <hr style="border-color: var(--border);">
 
-    <button onclick="saveQuiz()" class="btn-get-started" style="background-color: var(--accent); color: black; font-weight: bold;">
-        SAVE QUIZ
-    </button>
+    <div class="text-end">
+        <button onclick="saveQuiz()" class="btn-get-started" style="background-color: var(--accent); color: black; border: none;">
+            {{ 'UPDATE QUIZ' if quiz else 'CREATE QUIZ' }}
+        </button>
+    </div>
 </div>
 
 <script>
-
+src="scripts/quizes.js"
 </script>
 {% endblock %}
