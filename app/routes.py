@@ -112,6 +112,18 @@ def delete_module(module_id):
 
     return redirect(url_for('main.modules'))
 
+@main.route('/delete_lesson/<int:id_lesson>', methods=['POST'])
+@login_required
+def delete_lesson(id_lesson):
+
+    lesson = Lesson.query.get_or_404(id_lesson)
+    module_id = lesson.id_module
+    if current_user.role != 'admin':
+        return redirect(url_for('main.lessons_list', module_id=module_id))
+    db.session.delete(lesson)
+    db.session.commit()
+    return redirect(url_for('main.lessons_list', module_id=module_id))
+
 @main.route('/edit_module/<int:module_id>', methods=['POST'])
 @login_required
 def edit_module(module_id):
@@ -140,7 +152,8 @@ def edit_module(module_id):
 @main.route('/module/<int:module_id>')
 def lessons_list(module_id):
     module = Module.query.get_or_404(module_id)
-    return render_template('lessons_list.html', module=module)
+    lessons = Lesson.query.filter_by(id_module=module_id).all()
+    return render_template('lessons_list.html', module=module, lessons=lessons)
 
 @main.route('/create_lesson/<int:module_id>', methods=['GET', 'POST'])
 @login_required
