@@ -8,43 +8,96 @@
 <script>
   tinymce.init({
     selector: '#editor',
-    height: 500,
-    menubar: false,
+    skin: 'oxide-dark',
+    content_css: 'dark',
+    height: '75vh',
+    width: '100%',
+    menubar: true,
     plugins: [
-      'advlist autolink lists link image charmap print preview anchor',
-      'searchreplace visualblocks code fullscreen',
-      'insertdatetime media table paste code help wordcount',
-      'codesample'
+      'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+      'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+      'insertdatetime', 'media', 'table', 'help', 'wordcount', 'codesample'
     ],
-    toolbar: 'undo redo | formatselect | ' +
-    'bold italic backcolor | alignleft aligncenter ' +
+    toolbar: 'undo redo | blocks | ' +
+    'bold italic forecolor backcolor | alignleft aligncenter ' +
     'alignright alignjustify | bullist numlist outdent indent | ' +
-    'removeformat | image codesample | help',
-    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+    'removeformat | image media codesample | fullscreen preview',
+
+    file_picker_types: 'image',
+    file_picker_callback: (cb, value, meta) => {
+        const input = document.createElement('input');
+        input.setAttribute('type', 'file');
+        input.setAttribute('accept', 'image/*');
+
+        input.addEventListener('change', (e) => {
+          const file = e.target.files[0];
+
+          const reader = new FileReader();
+          reader.addEventListener('load', () => {
+            const id = 'blobid' + (new Date()).getTime();
+            const blobCache =  tinymce.activeEditor.editorUpload.blobCache;
+            const base64 = reader.result.split(',')[1];
+            const blobInfo = blobCache.create(id, file, base64);
+            blobCache.add(blobInfo);
+
+            /* call the callback and populate the Title field with the file name */
+            cb(blobInfo.blobUri(), { title: file.name });
+          });
+          reader.readAsDataURL(file);
+        });
+
+        input.click();
+    },
+
+    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px; background-color: #222; color: #fff; }'
   });
 </script>
 
-<div class="container mt-5">
-    <div class="login-container" style="max-width: 900px; margin: 0 auto;">
-        <h1 class="text-center">NEW LESSON</h1>
-        
-        <form method="post">
-            <div class="input-group">
-                <label>LESSON NAME</label>
-                <input type="text" name="name" required placeholder="Variables and Types" style="background: #2b2b2b; color: white;">
-            </div>
+<div class="container-fluid mt-4 mb-5" style="padding: 0 40px;">
 
-            <div class="input-group">
-                <label>CONTENT</label>
-                <textarea id="editor" name="content"></textarea>
-            </div>
+    <div class="card" style="background-color: var(--bg-card); border: 1px solid var(--border); border-radius: 15px; overflow: hidden;">
 
-            <button type="submit" class="mt-4">SAVE LESSON</button>
-        </form>
-        
-        <div class="text-center mt-3">
-             <a href="{{ url_for('main.lessons_list', module_id=module_id) }}" style="color: var(--text-muted);">Cancel</a>
+        <div class="card-header border-0 d-flex justify-content-between align-items-center py-3"
+             style="background-color: rgba(255, 94, 91, 0.1); border-bottom: 1px solid var(--border) !important;">
+
+            <h3 class="m-0" style="color: var(--text-main); font-weight: bold; letter-spacing: 1px;">
+                <span style="color: var(--accent);">EDITOR</span> / NEW LESSON
+            </h3>
+
+<div class="d-flex align-items-center gap-2">
+
+    <a href="{{ url_for('main.lessons_list', module_id=module_id) }}"
+       class="btn"
+       style="border: 1px solid var(--text-muted); color: var(--text-muted); font-weight: bold;">
+       CANCEL
+    </a>
+
+    <button type="submit" form="lessonForm" class="btn-get-started"
+            style="background-color: var(--accent); color: #000; font-weight: bold; border: none;">
+        SAVE LESSON
+    </button>
+
+</div>
+        </div>
+        <div class="card-body p-4">
+            <form id="lessonForm" method="post">
+
+                <div class="mb-4">
+                    <label class="form-label text-muted small fw-bold">LESSON TOPIC</label>
+                    <input type="text" name="name" required
+                           class="form-control form-control-lg"
+                           placeholder="Ex: Variables and Data Types"
+                           style="background-color: #1a1d24; border: 1px solid var(--border); color: white; padding: 15px;">
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label text-muted small fw-bold">CONTENT</label>
+                    <textarea id="editor" name="content"></textarea>
+                </div>
+
+            </form>
         </div>
     </div>
 </div>
+
 {% endblock %}
