@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e32ebeef-628b-4a76-8b71-da48666ab239" name="Changes" comment="update" />
+    <list default="true" id="e32ebeef-628b-4a76-8b71-da48666ab239" name="Changes" comment="update">
+      <change afterPath="$PROJECT_DIR$/app/templates/quiz.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/quizes.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/quizes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/create_quiz.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/create_quiz.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/lesson.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/lesson.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,8 +23,8 @@
         <option value="Flask Main" />
         <option value="CSS File" />
         <option value="Python Script" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -93,6 +100,7 @@
       <recent name="D:\gitHub\python\PythonLearningPlatform\.venv" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\gitHub\python\PythonLearningPlatform\app\static" />
       <recent name="D:\gitHub\python\PythonLearningPlatform\app" />
       <recent name="D:\gitHub\python\PythonLearningPlatform" />
     </key>
@@ -134,23 +142,8 @@
       <updated>1766596079945</updated>
       <workItem from="1766596081162" duration="17295000" />
       <workItem from="1766656104272" duration="28126000" />
-      <workItem from="1766751024409" duration="18242000" />
-    </task>
-    <task id="LOCAL-00069" summary="update">
-      <option name="closed" value="true" />
-      <created>1766687942100</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1766687942100</updated>
-    </task>
-    <task id="LOCAL-00070" summary="functions.png is added">
-      <option name="closed" value="true" />
-      <created>1766687980051</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1766687980051</updated>
+      <workItem from="1766751024409" duration="21079000" />
+      <workItem from="1766831833519" duration="1474000" />
     </task>
     <task id="LOCAL-00071" summary="update">
       <option name="closed" value="true" />
@@ -528,7 +521,23 @@
       <option name="project" value="LOCAL" />
       <updated>1766774981599</updated>
     </task>
-    <option name="localTasksCounter" value="118" />
+    <task id="LOCAL-00118" summary="moved">
+      <option name="closed" value="true" />
+      <created>1766775211583</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1766775211583</updated>
+    </task>
+    <task id="LOCAL-00119" summary="update">
+      <option name="closed" value="true" />
+      <created>1766775218360</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1766775218360</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -546,7 +555,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Lesson model was created" />
     <MESSAGE value="lessons are shown" />
     <MESSAGE value="functions.png is added" />
     <MESSAGE value="create_lesson.html was created" />
@@ -570,10 +578,11 @@
     <MESSAGE value="new models were created" />
     <MESSAGE value="js was created" />
     <MESSAGE value="create quiz button" />
+    <MESSAGE value="moved" />
     <MESSAGE value="update" />
     <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PythonLearningPlatform$PythonLearningPlatform.coverage" NAME="PythonLearningPlatform Coverage Results" MODIFIED="1766774891404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PythonLearningPlatform$PythonLearningPlatform.coverage" NAME="PythonLearningPlatform Coverage Results" MODIFIED="1766777842040" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

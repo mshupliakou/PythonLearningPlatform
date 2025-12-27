@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Quiz Editor | PyLearn{% endblock %}
+{% block title %}Create Quiz | PyLearn{% endblock %}
 
 {% block content %}
-<script src="https://cdn.tiny.cloud/1/{{ api_key }}/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.2/tinymce.min.js" referrerpolicy="origin"></script>
 
 <style>
     .editor-container {
@@ -23,6 +23,11 @@
         box-shadow: 0 0 0 2px rgba(255, 94, 91, 0.2);
     }
 
+    .input-dark::placeholder {
+        color: #888 !important;
+        opacity: 1;
+    }
+
     .answer-group {
         background-color: #0f1115;
         padding: 15px;
@@ -33,6 +38,22 @@
     .form-check-input:checked {
         background-color: var(--accent);
         border-color: var(--accent);
+    }
+
+    .btn-dashed {
+        border: 2px dashed rgba(255, 255, 255, 0.3);
+        background-color: transparent;
+        color: rgba(255, 255, 255, 0.6);
+        border-radius: 15px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-dashed:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background-color: rgba(255, 94, 91, 0.05);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
 </style>
 
@@ -54,14 +75,15 @@
     <div id="questionsContainer">
         </div>
 
-    <button onclick="addQuestion()" class="btn btn-outline-light w-100 py-3 mb-5" style="border-style: dashed;">
+    <button onclick="addQuestion()" class="btn btn-dashed w-100 py-4 mb-5"
+            style="font-weight: bold; font-size: 1.2rem;">
         + ADD NEW QUESTION
     </button>
 
     <hr style="border-color: var(--border);">
 
     <div class="text-end">
-        <button onclick="saveQuiz()" class="btn-get-started" style="background-color: var(--accent); color: black; border: none;">
+        <button onclick="saveQuiz()" class="btn-get-started" style="background-color: var(--accent); color: black; border: none; font-weight: bold; padding: 10px 30px; border-radius: 20px;">
             {{ 'UPDATE QUIZ' if quiz else 'CREATE QUIZ' }}
         </button>
     </div>
@@ -72,6 +94,26 @@
         saveUrl: "{{ url_for('main.save_quiz', id_lesson=lesson.id_lesson) }}",
         redirectUrl: "{{ url_for('main.view_lesson', id_lesson=lesson.id_lesson) }}"
     };
+
+    const EXISTING_QUIZ = {% if quiz and quiz.questions %}
+        [
+            {% for q in quiz.questions %}
+            {
+                text: {{ q.question | tojson }},
+                answers: [
+                    {% for a in q.answers %}
+                    {
+                        text: {{ a.answer | tojson }},
+                        is_correct: {{ 'true' if a.is_right else 'false' }}
+                    },
+                    {% endfor %}
+                ]
+            },
+            {% endfor %}
+        ]
+    {% else %}
+        []
+    {% endif %};
 </script>
 
 <script src="{{ url_for('static', filename='js/quizes.js') }}"></script>
