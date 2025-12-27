@@ -259,3 +259,21 @@ def delete_quiz(id_quiz):
     db.session.commit()
 
     return redirect(url_for('main.view_lesson', id_lesson=lesson_id))
+
+@main.route('/quiz/<int:id_quiz>', methods=['GET','POST'])
+@login_required
+def quiz(id_quiz):
+    take_quiz = Quiz.query.get_or_404(id_quiz)
+    if request.method == 'POST':
+        score = 0
+        total = len(quiz.questions)
+        for q in quiz.questions:
+            user_ans_id = request.form.get(f'question_{q.id_question}')
+            if user_ans_id:
+                ans = Answer.query.get(int(user_ans_id))
+                if ans and ans.is_right:
+                    score += 1
+
+        flash(f'You scored {score} out of {total}!', 'info')
+        return redirect(url_for('main.view_lesson', id_lesson=quiz.id_lesson))
+    return render_template('quiz.html', quiz=quiz)
