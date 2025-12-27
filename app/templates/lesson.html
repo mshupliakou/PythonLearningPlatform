@@ -4,7 +4,8 @@
 
 {% block content %}
 
-<div class="container mt-5 mb-5"> <div class="mb-4">
+<div class="container mt-5 mb-5">
+    <div class="mb-4">
         <a href="{{ url_for('main.lessons_list', module_id=lesson.id_module) }}" class="text-muted text-decoration-none">
             &larr; Return to Module
         </a>
@@ -56,7 +57,7 @@
                 <p class="text-muted">Test your knowledge based on this lesson.</p>
 
                 <div class="mt-3">
-                    <a href="#" class="btn-get-started" style="text-decoration: none; display: inline-block;">START QUIZ</a>
+                    <a href="{{ url_for('main.quiz', id_quiz=lesson.quiz.id_quiz) }}" class="btn-get-started" style="text-decoration: none; display: inline-block;">START QUIZ</a>
                 </div>
 
                 {% if current_user.role == 'admin' %}
@@ -77,10 +78,12 @@
                 <div class="d-flex justify-content-center">
                     <div class="admin-panel p-5 rounded text-center" style="border: 2px dashed var(--text-muted); width: 100%; max-width: 600px;">
                         <h4 class="text-muted mb-4">No quiz attached to this lesson.</h4>
+
                         <a href="{{ url_for('main.create_quiz', id_lesson=lesson.id_lesson) }}" class="btn-get-started"
-                           style="background-color: var(--bg-card); color: var(--accent); border: 2px solid var(--accent); display: inline-block; padding: 10px 30px;">
+                           style="background-color: var(--accent); color: black; font-weight: bold; border-radius: 20px; padding: 10px 30px; text-decoration: none; display: inline-block;">
                             + CREATE QUIZ
                         </a>
+
                     </div>
                 </div>
             {% endif %}
@@ -88,4 +91,6 @@
         {% endif %}
     </div>
 
-</div> {% endblock %}
+</div>
+
+{% endblock %}
