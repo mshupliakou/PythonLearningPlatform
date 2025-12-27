@@ -140,6 +140,7 @@ async function saveQuiz() {
 
 document.addEventListener('DOMContentLoaded', () => {
     const quizData = window.EXISTING_QUIZ || [];
+    console.log("Quiz Data loaded:", quizData);
 
     if (quizData.length > 0) {
         quizData.forEach(question => {
