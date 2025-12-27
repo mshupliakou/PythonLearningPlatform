@@ -139,8 +139,10 @@ async function saveQuiz() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (typeof EXISTING_QUIZ !== 'undefined' && EXISTING_QUIZ.length > 0) {
-        EXISTING_QUIZ.forEach(question => {
+    const quizData = window.EXISTING_QUIZ || [];
+
+    if (quizData.length > 0) {
+        quizData.forEach(question => {
             addQuestion(question);
         });
     } else {

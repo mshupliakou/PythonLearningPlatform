@@ -95,7 +95,7 @@
         redirectUrl: "{{ url_for('main.view_lesson', id_lesson=lesson.id_lesson) }}"
     };
 
-    const EXISTING_QUIZ = {% if quiz and quiz.questions %}
+    window.EXISTING_QUIZ = {% if quiz and quiz.questions %}
         [
             {% for q in quiz.questions %}
             {
@@ -114,6 +114,8 @@
     {% else %}
         []
     {% endif %};
+
+    console.log("Loaded Quiz Data:", window.EXISTING_QUIZ);
 </script>
 
 <script src="{{ url_for('static', filename='js/quizes.js') }}"></script>
