@@ -15,7 +15,7 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
 
-    app.config['SECRET_KEY'] = 'super-secret-key'
+    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'super-secret-key')
 
     database_url = os.environ.get('DATABASE_URL')
     if database_url and database_url.startswith("postgres://"):
